@@ -3,63 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notable Bands</title>
+    <title>History of Metal</title>
     <script src="https://tailwindcss.com"></script>
+    <style>
+        body { background-color: #09090b; } /* Extra dark zinc */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #09090b; }
+        ::-webkit-scrollbar-thumb { background: #dc2626; border-radius: 10px; }
+    </style>
 </head>
-<body class="bg-zinc-950 text-zinc-100 font-sans">
+<body class="text-zinc-100 font-sans selection:bg-red-600 selection:text-white">
 
-    <nav class="flex justify-between items-center p-6 border-b border-zinc-800 bg-zinc-950 sticky top-0 z-50">
+    <nav class="flex justify-between items-center p-6 border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-md sticky top-0 z-50">
         <div class="text-2xl font-black tracking-widest text-red-600">METAL.LOG</div>
-        <div class="hidden md:flex space-x-8 font-bold uppercase text-sm tracking-widest">
-            <a href="historyofmetal.html" class="hover:text-red-500 transition">History</a>
-            <a href="notablebands.html" class="text-red-500 underline">Notable Bands</a>
+        <div class="hidden md:flex space-x-8 font-bold uppercase text-xs tracking-widest">
+            <a href="historyofmetal.html" class="text-red-500 underline decoration-2 underline-offset-8">History</a>
+            <a href="notablebands.html" class="hover:text-red-500 transition">Notable Bands</a>
         </div>
     </nav>
 
-    <main class="max-w-6xl mx-auto py-16 px-6">
-        <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-            <h1 class="text-5xl font-black italic uppercase">The Titans</h1>
-            <input type="text" id="bandSearch" placeholder="Search a band..." 
-                class="bg-zinc-900 border border-zinc-700 p-3 rounded-lg w-full md:w-64 focus:outline-none focus:border-red-600">
-        </div>
-
-        <!-- Band Grid -->
-        <div id="bandGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="band-card bg-zinc-900 p-8 rounded-xl border border-zinc-800 hover:border-red-600 transition">
-                <h3 class="text-2xl font-bold mb-2">Metallica</h3>
-                <span class="text-xs bg-red-600 px-2 py-1 rounded font-bold uppercase">Thrash Metal</span>
-            </div>
-            <div class="band-card bg-zinc-900 p-8 rounded-xl border border-zinc-800 hover:border-red-600 transition">
-                <h3 class="text-2xl font-bold mb-2">Iron Maiden</h3>
-                <span class="text-xs bg-red-600 px-2 py-1 rounded font-bold uppercase">Heavy Metal</span>
-            </div>
-            <div class="band-card bg-zinc-900 p-8 rounded-xl border border-zinc-800 hover:border-red-600 transition">
-                <h3 class="text-2xl font-bold mb-2">Slayer</h3>
-                <span class="text-xs bg-red-600 px-2 py-1 rounded font-bold uppercase">Thrash Metal</span>
-            </div>
-            <div class="band-card bg-zinc-900 p-8 rounded-xl border border-zinc-800 hover:border-red-600 transition">
-                <h3 class="text-2xl font-bold mb-2">Tool</h3>
-                <span class="text-xs bg-red-600 px-2 py-1 rounded font-bold uppercase">Prog Metal</span>
-            </div>
+    <main class="max-w-4xl mx-auto py-20 px-6">
+        <header class="mb-16">
+            <p id="greeting" class="text-red-500 font-mono text-sm mb-2"></p>
+            <h1 class="text-7xl font-black mb-4">THE CHRONICLES</h1>
+            <p class="text-zinc-500 text-lg">Tracing the distortion from 1970 to eternity.</p>
+        </header>
+        
+        <div class="space-y-16">
+            <section class="group relative pl-8 border-l border-zinc-800 hover:border-red-600 transition-colors">
+                <div class="absolute -left-1.5 top-0 w-3 h-3 bg-zinc-800 group-hover:bg-red-600 rounded-full transition-colors"></div>
+                <h2 class="text-3xl font-bold">1970: The Omen</h2>
+                <p class="text-zinc-400 mt-4 leading-relaxed text-lg">Black Sabbath drops their debut. The world gets a lot louder and a lot darker.</p>
+            </section>
+            <!-- Add more sections here -->
+             <div class="h-[1000px]"></div> <!-- Spacer to test scroll button -->
         </div>
     </main>
 
-    <script>
-        // Real-time Search Logic
-        const searchInput = document.getElementById('bandSearch');
-        const cards = document.querySelectorAll('.band-card');
+    <!-- Scroll to Top Button -->
+    <button id="toTop" class="fixed bottom-8 right-8 bg-red-600 p-4 rounded-full shadow-2xl opacity-0 translate-y-10 transition-all duration-300 hover:bg-red-700">
+        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+    </button>
 
-        searchInput.addEventListener('input', (e) => {
-            const value = e.target.value.toLowerCase();
-            cards.forEach(card => {
-                const bandName = card.querySelector('h3').innerText.toLowerCase();
-                if (bandName.includes(value)) {
-                    card.style.display = "block";
-                } else {
-                    card.style.display = "none";
-                }
-            });
-        });
+    <script>
+        // 1. Dynamic Greeting
+        const hour = new Date().getHours();
+        const greetElement = document.getElementById('greeting');
+        if (hour < 12) greetElement.innerText = "GOOD MORNING, HEADBANGER";
+        else if (hour < 18) greetElement.innerText = "GOOD AFTERNOON, HEADBANGER";
+        else greetElement.innerText = "GOOD EVENING, HEADBANGER";
+
+        // 2. Scroll to Top Logic
+        const toTopBtn = document.getElementById('toTop');
+        window.onscroll = () => {
+            if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
+                toTopBtn.classList.remove('opacity-0', 'translate-y-10');
+            } else {
+                toTopBtn.classList.add('opacity-0', 'translate-y-10');
+            }
+        };
+        toTopBtn.onclick = () => window.scrollTo({top: 0, behavior: 'smooth'});
     </script>
 </body>
 </html>
