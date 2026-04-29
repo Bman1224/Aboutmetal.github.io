@@ -1,6 +1,82 @@
 <!DOCTYPE html>
-<html>
-  <body>
-    <h1>About Metal</h1>
-  </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Web | Home</title>
+    <script src="https://tailwindcss.com"></script>
+    <style>
+        /* Smooth transition for the navbar */
+        nav { transition: all 0.3s ease; }
+        .nav-scrolled { padding-top: 1rem; padding-bottom: 1rem; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 flex justify-between items-center px-10 py-6 bg-white">
+        <div class="text-2xl font-bold text-indigo-600">NEXUS</div>
+        
+        <!-- Desktop Links -->
+        <div class="hidden md:flex space-x-8 font-medium">
+            <a href="index.html" class="text-indigo-600 underline">Home</a>
+            <a href="services.html" class="hover:text-indigo-600 transition">Services</a>
+            <a href="contact.html" class="hover:text-indigo-600 transition">Contact</a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="menu-btn" class="md:hidden text-slate-600 focus:outline-none">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+        </button>
+    </nav>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden fixed top-20 left-0 w-full bg-white shadow-xl z-40 p-6 flex flex-col space-y-4 md:hidden">
+        <a href="index.html" class="text-lg font-bold">Home</a>
+        <a href="services.html" class="text-lg font-bold">Services</a>
+        <a href="contact.html" class="text-lg font-bold">Contact</a>
+    </div>
+
+    <!-- Hero Content -->
+    <header class="max-w-5xl mx-auto pt-40 pb-20 text-center px-6">
+        <h1 id="hero-text" class="text-6xl font-black leading-tight mb-6 opacity-0 translate-y-10 transition duration-1000">
+            Build something <span class="text-indigo-600">extraordinary.</span>
+        </h1>
+        <p class="text-xl text-slate-600 mb-8 max-w-2xl mx-auto">Click the button below to see a JS alert action.</p>
+        <button onclick="showAlert()" class="bg-indigo-600 text-white px-8 py-4 rounded-lg font-bold hover:scale-105 transition transform active:scale-95">
+            Test JavaScript
+        </button>
+    </header>
+
+    <script>
+        // 1. Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 2. Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('nav-scrolled', 'shadow-md');
+            } else {
+                navbar.classList.remove('nav-scrolled', 'shadow-md');
+            }
+        });
+
+        // 3. Simple Animation on Load
+        window.addEventListener('DOMContentLoaded', () => {
+            const hero = document.getElementById('hero-text');
+            hero.classList.remove('opacity-0', 'translate-y-10');
+        });
+
+        // 4. Custom Function
+        function showAlert() {
+            alert('JavaScript is working! You can now handle clicks and logic.');
+        }
+    </script>
+</body>
 </html>
