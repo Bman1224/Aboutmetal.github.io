@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notable Bands</title>
+    <script src="https://tailwindcss.com"></script>
+</head>
+<body class="bg-zinc-950 text-zinc-100 font-sans">
+
+    <nav class="flex justify-between items-center p-6 border-b border-zinc-800 bg-zinc-950 sticky top-0 z-50">
+        <div class="text-2xl font-black tracking-widest text-red-600">METAL.LOG</div>
+        <div class="hidden md:flex space-x-8 font-bold uppercase text-sm tracking-widest">
+            <a href="historyofmetal.html" class="hover:text-red-500 transition">History</a>
+            <a href="notablebands.html" class="text-red-500 underline">Notable Bands</a>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto py-16 px-6">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+            <h1 class="text-5xl font-black italic uppercase">The Titans</h1>
+            <input type="text" id="bandSearch" placeholder="Search a band..." 
+                class="bg-zinc-900 border border-zinc-700 p-3 rounded-lg w-full md:w-64 focus:outline-none focus:border-red-600">
+        </div>
+
+        <!-- Band Grid -->
+        <div id="bandGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="band-card bg-zinc-900 p-8 rounded-xl border border-zinc-800 hover:border-red-600 transition">
+                <h3 class="text-2xl font-bold mb-2">Metallica</h3>
+                <span class="text-xs bg-red-600 px-2 py-1 rounded font-bold uppercase">Thrash Metal</span>
+            </div>
+            <div class="band-card bg-zinc-900 p-8 rounded-xl border border-zinc-800 hover:border-red-600 transition">
+                <h3 class="text-2xl font-bold mb-2">Iron Maiden</h3>
+                <span class="text-xs bg-red-600 px-2 py-1 rounded font-bold uppercase">Heavy Metal</span>
+            </div>
+            <div class="band-card bg-zinc-900 p-8 rounded-xl border border-zinc-800 hover:border-red-600 transition">
+                <h3 class="text-2xl font-bold mb-2">Slayer</h3>
+                <span class="text-xs bg-red-600 px-2 py-1 rounded font-bold uppercase">Thrash Metal</span>
+            </div>
+            <div class="band-card bg-zinc-900 p-8 rounded-xl border border-zinc-800 hover:border-red-600 transition">
+                <h3 class="text-2xl font-bold mb-2">Tool</h3>
+                <span class="text-xs bg-red-600 px-2 py-1 rounded font-bold uppercase">Prog Metal</span>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Real-time Search Logic
+        const searchInput = document.getElementById('bandSearch');
+        const cards = document.querySelectorAll('.band-card');
+
+        searchInput.addEventListener('input', (e) => {
+            const value = e.target.value.toLowerCase();
+            cards.forEach(card => {
+                const bandName = card.querySelector('h3').innerText.toLowerCase();
+                if (bandName.includes(value)) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
