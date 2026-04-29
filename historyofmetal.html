@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History of Metal</title>
+    <script src="https://tailwindcss.com"></script>
+</head>
+<body class="bg-zinc-950 text-zinc-100 font-sans">
+
+    <!-- Nav -->
+    <nav class="flex justify-between items-center p-6 border-b border-zinc-800 bg-zinc-950 sticky top-0 z-50">
+        <div class="text-2xl font-black tracking-widest text-red-600">METAL.LOG</div>
+        <div class="hidden md:flex space-x-8 font-bold uppercase text-sm tracking-widest">
+            <a href="historyofmetal.html" class="text-red-500 underline">History</a>
+            <a href="notablebands.html" class="hover:text-red-500 transition">Notable Bands</a>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <main class="max-w-4xl mx-auto py-20 px-6">
+        <h1 class="text-6xl font-black mb-12 border-l-8 border-red-600 pl-6">THE GENESIS</h1>
+        
+        <div class="space-y-12">
+            <section class="relative pl-8 border-l border-zinc-800">
+                <span class="absolute -left-2 top-0 w-4 h-4 bg-red-600 rounded-full"></span>
+                <h2 class="text-2xl font-bold text-red-500">1970: The Birth</h2>
+                <p class="text-zinc-400 mt-2 leading-relaxed">Black Sabbath's self-titled debut changed everything. The heavy riffs and dark themes set the blueprint for a whole new genre.</p>
+                <button onclick="toggleExtra(this)" class="text-xs font-bold text-zinc-500 mt-4 uppercase hover:text-white transition">Read More +</button>
+                <p class="hidden text-zinc-500 mt-2 italic">Fun Fact: Tony Iommi’s missing fingertips actually contributed to the "heavy" sound because he had to downtune his guitar strings.</p>
+            </section>
+
+            <section class="relative pl-8 border-l border-zinc-800">
+                <span class="absolute -left-2 top-0 w-4 h-4 bg-red-600 rounded-full"></span>
+                <h2 class="text-2xl font-bold text-red-500">1980s: The Expansion</h2>
+                <p class="text-zinc-400 mt-2 leading-relaxed">The New Wave of British Heavy Metal and the rise of Thrash in the US pushed metal into the mainstream consciousness.</p>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        function toggleExtra(btn) {
+            const extra = btn.nextElementSibling;
+            extra.classList.toggle('hidden');
+            btn.innerText = extra.classList.contains('hidden') ? 'Read More +' : 'Show Less -';
+        }
+    </script>
+</body>
+</html>
